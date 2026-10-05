@@ -10,7 +10,7 @@ Trabajo desarrollando páginas webs para una empresa, como freelance y trabajamo
 Los 2 departamentos cuyos problemas encuentro más interesantes son:
 
 Experiencia del Paciente y Acceso | Una plataforma de reservas online unificada para ambos mercados
-Tecnología |
+Tecnología | Una API central de HealthCore que unifique datos de pacientes, citas, facturación y personal de ambos sistemas EHR, telemetría y monitorización en tiempo real.
 
 ## Mi idea de Agente de IA
 

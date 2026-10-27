@@ -43,7 +43,7 @@ npx http-server uis/website -p 3000 -a 0.0.0.0 -c-1
 | Servicios: preventiva | `service-preventive-800.jpg` | Envato Elements: «woman in consultation at doctor's office» |
 | Por qué HealthCore | `why-600.jpg`, `why-1200.jpg` | Envato Elements: «friendly check-in at the medical office» |
 
-Las 4 fotos de Envato Elements requieren una licencia registrada para este proyecto en la cuenta que las descargó. **Pendiente:** confirmar ese registro y anotar aquí el ID de cada elemento.
+Proyecto ficticio, repositorio privado: no se registran aquí licencias ni IDs de las fotos.
 
 **Logo** (`logo.png`, header y footer): aportado por Elena y recortado de una captura de baja resolución (272×290 px), con el fondo quitado. Sustituir por el original (SVG o PNG grande transparente) en la misma ruta cuando exista.
 

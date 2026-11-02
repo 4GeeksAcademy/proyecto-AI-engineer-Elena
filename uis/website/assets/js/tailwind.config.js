@@ -7,6 +7,7 @@ tailwind.config = {
         ink: '#1F2A33',
         muted: '#4A5A66',
         accent: { DEFAULT: '#B4461F', dark: '#8F3516', light: '#F2A07B' },
+        danger: '#B42318',
         'footer-text': '#B8C9D4',
       },
       fontFamily: {

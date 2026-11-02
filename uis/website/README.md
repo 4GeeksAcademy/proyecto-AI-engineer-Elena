@@ -1,8 +1,9 @@
 # Website público de HealthCore
 
-Landing page bilingüe (EN/ES) de HealthCore: quiénes somos, servicios y ubicaciones en EE. UU. HTML y JS vanilla con Tailwind CSS por CDN. Sin backend, sin formularios y sin recogida de datos.
+Landing page bilingüe (EN/ES) de HealthCore (quiénes somos, servicios y ubicaciones en EE. UU.) y formulario de consulta para pacientes. HTML y JS vanilla con Tailwind CSS por CDN. Sin backend: el formulario valida y simula el envío, no transmite ni guarda datos.
 
-- Spec: `specs/001-landing-page/spec.md`, diseño: `design.md`, tareas: `tasks.md`.
+- Landing: `specs/001-landing-page/` (`spec.md`, `design.md`, `plan.md`, `tasks.md`).
+- Formulario: `specs/002-application-form/` (mismos documentos).
 - Marca: `docs/brand/brand-guide.md`. Contenido: `BRIEFING.md` (ES) y `BRIEFING.en.md` (EN).
 
 ## Estructura
@@ -11,10 +12,23 @@ Landing page bilingüe (EN/ES) de HealthCore: quiénes somos, servicios y ubicac
 | --- | --- |
 | `index.html` | Landing en inglés |
 | `index.es.html` | Landing en español |
-| `assets/js/tailwind.config.js` | Tokens de marca, compartidos por ambas páginas |
+| `application.html` | Formulario de consulta en inglés (4 pasos) |
+| `application.es.html` | Formulario de consulta en español |
+| `assets/js/tailwind.config.js` | Tokens de marca, compartidos por todas las páginas |
+| `assets/js/validation.js` | Validación y pasos del formulario; el idioma sale de `lang` |
 | `assets/img/` | Imágenes redimensionadas (Hero, Servicios, Por qué HealthCore) y `logo.png` |
 
-`application.html` y `application.es.html` (formulario de consulta) no existen todavía: el botón del Hero enlaza a ellos y dará 404 hasta la spec 002.
+El botón del Hero de cada landing enlaza a su formulario (`application.html` / `application.es.html`).
+
+### Formulario de consulta
+
+4 pasos (datos personales, cita, seguro, consulta y consentimiento), 16 campos con los `name` del briefing más `patient_id` opcional. Todos obligatorios salvo los de seguro (solo si `has_insurance` = Yes) y `patient_id`. Validación en tiempo real (`blur`, `input`, `change`), mensajes literales del briefing en EN y ES, y botón «Limpiar formulario». Al enviar un formulario válido se muestra el mensaje de éxito del briefing; **no se envía nada**. Decisiones propias y pendientes: `specs/002-application-form/design.md` §11.
+
+Las reglas de validación son funciones puras que se pueden ejecutar con Node, sin navegador:
+
+```
+node -e "const v=require('./uis/website/assets/js/validation.js'); console.log(v.validateField('phone', {phone: '+1 305 555 0191'}))"
+```
 
 ## Cómo verlo
 
@@ -63,3 +77,18 @@ Estado frente a los criterios de aceptación de `spec.md` §6 (T20 cerrada). Las
 | Lighthouse Accesibilidad ≥ 95 | ES: 100 (Rendimiento 99, Prácticas 96, SEO 100, captura vista). EN: validado por Elena; resultado no registrado aquí |
 | JSON-LD en validator.schema.org | Validado por Elena; resultado no registrado aquí (el JSON parsea y tiene 1 `MedicalOrganization` y 6 `MedicalClinic`) |
 | Uso completo con teclado y foco visible | Código revisado: 23 elementos enfocables con estilo de foco, orden lógico, sin `tabindex` positivo. Recorrido manual validado por Elena |
+
+### Formulario de consulta (spec 002)
+
+Comprobado en `application.html` y `application.es.html` (T26 cerrada). Las filas «validado por Elena» son confirmación de la autora; no hay registro del resultado en el repo.
+
+| Comprobación | Estado |
+| --- | --- |
+| Reglas puras (`validation.js`) con Node: nombres, teléfono, correo, fechas de nacimiento y de cita (día hábil, +60 días), regla pediátrica, `patient_id`, seguro, consulta, consentimiento, advertencia franja/clínica y mismas claves de mensaje en EN y ES | 91 casos: cumple |
+| Comportamiento en jsdom, EN y ES: avance y retroceso por pasos, errores literales, tiempo real, campos condicionales, bloqueo y salto al primer paso con error, éxito sin peticiones de red, «Limpiar formulario» | 120 comprobaciones: cumple |
+| HTML en validator.nu 20.6.30 (EN y ES) | 0 errores: cumple |
+| axe-core 4 en jsdom (inicial, con errores en cada paso y con campos condicionales abiertos), EN y ES | 0 violaciones. El contraste no lo calcula jsdom: `danger` mide 6,57:1 sobre `surface` y 6,05:1 sobre `surface-alt` |
+| Sin scroll horizontal a 320, 768 y 1280 px (Chrome headless, EN y ES) | Medido: cumple |
+| Capturas a 1280 px y con errores visibles (ES) | Revisadas: errores con icono y prefijo, aviso de franja distinto del error |
+| Lighthouse Accesibilidad ≥ 95, VoiceOver al cambiar de paso y recorrido completo con teclado | Validado por Elena; resultado no registrado aquí |
+

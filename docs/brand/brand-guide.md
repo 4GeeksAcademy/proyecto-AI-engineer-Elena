@@ -44,6 +44,7 @@ El primario es un **azul marea**: un azul petróleo profundo, distinto de los az
 | `accent` | Fondo de CTA principal | `#B4461F` | ≤ 5 % |
 | `accent-dark` | Hover/activo del CTA | `#8F3516` | — (estado) |
 | `accent-light` | Anillo de foco y enlaces sobre `primary-dark` | `#F2A07B` | — (estado) |
+| `danger` | Mensajes de error y borde de campo inválido en formularios | `#B42318` | — (estado) |
 
 **Pares texto/fondo permitidos** (WCAG 2.x; todos ≥ 4,5:1):
 
@@ -56,6 +57,7 @@ El primario es un **azul marea**: un azul petróleo profundo, distinto de los az
 | Blanco #FFFFFF | `primary` / `primary-dark` | 9,60 / 14,10 |
 | Blanco #FFFFFF | `accent` #B4461F / `accent-dark` #8F3516 | 5,47 / 7,81 |
 | `accent` #B4461F | `surface` / `surface-alt` | 5,47 / 5,03 |
+| `danger` #B42318 | `surface` / `surface-alt` | 6,57 / 6,05 |
 | `accent-light` #F2A07B | `primary-dark` | 6,77 |
 | `#B8C9D4` (texto footer) | `primary-dark` | 8,29 |
 

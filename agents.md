@@ -66,6 +66,7 @@ Si una tarea requiere tocar una zona protegida, solicita autorización antes de 
 - El equipo tecnológico descrito es de seis personas en Austin.
 - El repositorio se describe como estructura base, sin aplicaciones ejecutables ni scripts globales en la raíz.
 - Los proveedores y capacidades concretas de los EHR no están especificados aquí; no los supongas.
+- El envío de formularios es simulado: no se transmiten datos a sistemas reales (EHR, APIs externas, correo ni otros servicios). Implementa el envío con mocks o respuestas simuladas y no lo presentes como una integración real.
 
 # Verificación
 
